@@ -31,6 +31,8 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private TrailRenderer tr;
 
+    private Transform transformThirdPersonCamera;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -59,6 +61,11 @@ public class Movement : MonoBehaviour
             Jump();
 
             Invoke(nameof(resetJump), jumpCooldown);
+        }
+
+        if (transformThirdPersonCamera) 
+        {
+            movement = transformThirdPersonCamera.TransformDirection(movement);
         }
     }
 
